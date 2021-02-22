@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+	<resultMap id="UserAuthMap"
+		type="com.phoenixrs.api.entities.UserEntity">
+		<result property="user_name" column="user_name" />
+		<result property="email" column="email" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="first_name" column="first_name" />
+		<result property="last_name" column="last_name" />
+		<result property="id" column="id_user" />
+		<result property="logo" column="logo" />
+	</resultMap>
+	
+	
+	<resultMap id="AccountMap"
+		type="com.phoenixrs.api.entities.AccountEntity">
+		<result property="user_name" column="user_name" />
+		<result property="email" column="email" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="first_name" column="first_name" />
+		<result property="last_name" column="last_name" />
+		<result property="id" column="id_user" />
+		<result property="logo" column="logo" />
+	</resultMap>
+	
+	<select id="findByLoginId" resultMap="UserAuthMap"
+		parameterType="String">
+		SELECT
+		u.`id`,
+		u.`password`,
+		u.`first_name`,
+		u.`last_name`,
+		u.`id` AS id_user,
+		u.`email` AS user_name,
+		concat( u.first_name, ', ',
+		u.last_name ) AS `name`,
+		CONCAT( 'ROLE_', 1 ) AS roles,
+		u.logo
+		FROM
+		`customer` u
+		WHERE
+		email = #{value}
+		GROUP BY
+		u.id;
+	</select>
+	
+	<select id="getUserByEmail" resultMap="UserAuthMap" parameterType="String">
+    	SELECT
+    		u.`id`,
+			u.`first_name`,
+			u.`last_name`,
+			u.id as id_user,
+			u.email
+		FROM `customer` u
+		WHERE u.email = #{value}
+		;
+  	</select>
+  	
+  	<select id="getUserById" resultMap="AccountMap" parameterType="Integer">
+    	SELECT
+    		u.`id`,
+    		u.`password`,
+			u.`first_name`,
+			u.`last_name`,
+			u.id as id_user,
+			u.email
+		FROM `customer` u
+		WHERE u.id = #{value}
+		;
+  	</select>
+  	
+  	<!-- reset password -->
+	<update id="resetPassword">
+		UPDATE `customer`
+		SET
+			`password` = #{password}
+		WHERE
+			`id` = #{id}
+	</update>
+	
+	<update id="updateChangePassword">
+		UPDATE `customer`
+		SET
+			`password` = #{password}
+		WHERE
+			`id` = #{id}
+	</update>
+	
+	
+	<select id="getUserAdminById" resultMap="AccountMap" parameterType="Integer">
+    	SELECT
+    		u.`id`,
+    		u.`password`,
+			u.`first_name`,
+			u.`last_name`,
+			u.id as id_user,
+			u.email
+		FROM `employee` u
+		WHERE u.id = #{value}
+		;
+  	</select>
+  	
+  	<update id="updateAdminChangePassword">
+		UPDATE `employee`
+		SET
+			`password` = #{password}
+		WHERE
+			`id` = #{id}
+	</update>
+	
+
+</mapper>

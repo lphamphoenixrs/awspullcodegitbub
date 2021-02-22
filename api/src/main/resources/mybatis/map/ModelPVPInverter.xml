@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ModelPVPInverter">
+	<resultMap id="ModelPVPInverterMap"
+		type="com.phoenixrs.api.entities.ModelPVPInverterEntity">
+		   <result property="time" column="time" />
+		   <result property="id_device" column="id_device" />
+		   <result property="error" column="error" />
+		   <result property="low_alarm" column="low_alarm" />
+		   <result property="high_alarm" column="high_alarm" />
+		   <result property="total_kwh_delivered" column="total_kwh_delivered" />
+		   <result property="volts_a_l_n" column="volts_a_l_n" />
+		   <result property="volts_b_l_n" column="volts_b_l_n" />
+		   <result property="volts_c_l_n" column="volts_c_l_n" />
+		   <result property="current_a" column="current_a" />
+		   <result property="current_b" column="current_b" />
+		   <result property="current_c" column="current_c" />
+		   <result property="dc_output_voltage" column="dc_output_voltage" />
+		   <result property="dc_output_current" column="dc_output_current" />
+		   <result property="line_frenquency" column="line_frenquency" />
+		   <result property="line_kw" column="line_kw" />
+		   <result property="inverter_operating_status" column="inverter_operating_status" />
+		   <result property="inverter_fault_word0" column="inverter_fault_word0" />
+		   <result property="inverter_fault_word1" column="inverter_fault_word1" />
+		   <result property="inverter_fault_word2" column="inverter_fault_word2" />
+		   <result property="data_comm_status" column="data_comm_status" />
+		   
+
+	</resultMap>
+
+	<insert id="insertModelPVPInverter" useGeneratedKeys="true"
+		keyProperty="time">
+		INSERT INTO `model_pvp_inverter`(
+		  `time`,
+		  `id_device`,
+		  `error`,
+		  `low_alarm`,
+		  `high_alarm`,
+		  `total_kwh_delivered`,
+		  `volts_a_l_n`,
+		  `volts_b_l_n`,
+		  `volts_c_l_n`,
+		  `current_a`,
+		  `current_b`,
+		  `current_c`,
+		  `dc_output_voltage`,
+		  `dc_output_current`,
+		  `line_frenquency`,
+		  `line_kw`,
+		  `inverter_operating_status`,
+		  `inverter_fault_word0`,
+		  `inverter_fault_word1`,
+		  `inverter_fault_word2`,
+		  `data_comm_status`
+		)VALUES(
+		  #{time},
+		  #{id_device},
+		  #{error},
+		  #{low_alarm},
+		  #{high_alarm},
+		  #{total_kwh_delivered},
+		  #{volts_a_l_n},
+		  #{volts_b_l_n},
+		  #{volts_c_l_n},
+		  #{current_a},
+		  #{current_b},
+		  #{current_c},
+		  #{dc_output_voltage},
+		  #{dc_output_current},
+		  #{line_frenquency},
+		  #{line_kw},
+		  #{inverter_operating_status},
+		  #{inverter_fault_word0},
+		  #{inverter_fault_word1},
+		  #{inverter_fault_word2},
+		  #{data_comm_status}
+		);
+	</insert>
+
+</mapper> 
