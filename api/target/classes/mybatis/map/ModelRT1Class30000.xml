@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ModelRT1Class30000">
+	<resultMap id="ModelRT1Class30000Map"
+		type="com.phoenixrs.api.entities.ModelRT1Class30000Entity">
+		   <result property="time" column="time" />
+		   <result property="id_device" column="id_device" />
+		   <result property="error" column="error" />
+		   <result property="low_alarm" column="low_alarm" />
+		   <result property="high_alarm" column="high_alarm" />
+		   <result property="device_type" column="device_type" />
+		   <result property="data_model_version" column="data_model_version" />
+		   <result property="operational_mode" column="operational_mode" />
+		   <result property="status_flags" column="status_flags" />
+		   <result property="sensor1_data" column="sensor1_data" />
+		   <result property="panel_temperature" column="panel_temperature" />
+		   <result property="external_power_sensor" column="external_power_sensor" />
+		   <result property="calibration_date" column="calibration_date" />
+		   <result property="error_code" column="error_code" />
+		   <result property="protocol_error" column="protocol_error" />
+		   <result property="batch_number" column="batch_number" />
+		   <result property="serial_number" column="serial_number" />
+		   <result property="software_version" column="software_version" />
+		   <result property="hardware_version" column="hardware_version" />
+		   <result property="node_id" column="node_id" />
+
+	</resultMap>
+
+	<insert id="insertModelRT1Class30000" useGeneratedKeys="true"
+		keyProperty="time">
+		INSERT INTO `model_rt1_class30000`(
+		  `time`,
+		  `id_device`,
+		  `error`,
+		  `low_alarm`,
+		  `high_alarm`,
+		  `device_type`,
+		  `data_model_version`,
+		  `operational_mode`,
+		  `status_flags`,
+		  `sensor1_data`,
+		  `panel_temperature`,
+		  `external_power_sensor`,
+		  `calibration_date`,
+		  `error_code`,
+		  `protocol_error`,
+		  `batch_number`,
+		  `serial_number`,
+		  `software_version`,
+		  `hardware_version`,
+		  `node_id`
+		)VALUES(
+		  #{time},
+		  #{id_device},
+		  #{error},
+		  #{low_alarm},
+		  #{high_alarm},
+		  #{device_type},
+		  #{data_model_version},
+		  #{operational_mode},
+		  #{status_flags},
+		  #{sensor1_data},
+		  #{panel_temperature},
+		  #{external_power_sensor},
+		  #{calibration_date},
+		  #{error_code},
+		  #{protocol_error},
+		  #{batch_number},
+		  #{serial_number},
+		  #{software_version},
+		  #{hardware_version},
+		  #{node_id}
+		);
+	</insert>
+
+</mapper> 

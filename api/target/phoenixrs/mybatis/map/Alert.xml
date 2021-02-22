@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Alert">
+	<resultMap id="AlertMap"
+		type="com.phoenixrs.api.entities.AlertEntity">
+		<result property="id" column="id" />
+		<result property="id_customer" column="id_customer" />
+		<result property="id_device" column="id_device" />
+		<result property="id_error" column="id_error" />
+		<result property="start_date" column="start_date" />
+		<result property="end_date" column="end_date" />
+		<result property="asset" column="asset" />
+		<result property="capacity" column="capacity" />
+		<result property="status" column="status" />
+		<result property="is_delete" column="is_delete" />
+		<result property="created_date" column="created_date" />
+		<result property="created_by" column="created_by" />
+		<result property="updated_date" column="updated_date" />
+		<result property="updated_by" column="updated_by" />
+		<result property="id_site" column="id_site" />
+		<result property="totalRecord" column="totalRecord" />
+		<result property="current_time" column="current_time" />
+		
+	</resultMap>
+	<select id="getList" resultType="Map" parameterType="String" >
+		SELECT
+			l.id,
+			DATE_FORMAT(l.start_date, '%m/%d/%Y %H:%i:%s %p') AS start_date,
+			l.end_date,
+			l.asset,
+			e.priority,
+			CASE
+					WHEN priority = 1 THEN "Low"
+					WHEN priority = 2 THEN "High"
+					ELSE ""
+			END AS priority_name,
+			l.capacity,
+			l.`status`,
+			IF(l.`status` = 1, 'Open', 'Close') AS status_name,
+			el.`name` AS `level`,
+			e.message,
+			e.error_code,
+			d.devicename,
+			s.`name` AS site_name,
+			s.id AS id_site,
+			d.id as id_device,
+			el.icon_alert,
+			el.class_name,
+			el.id AS id_error_level,
+			DATE_FORMAT( CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone} ), #{format_sql_long} ) AS start,
+			CONCAT_WS('', 
+			TIMESTAMPDIFF(DAY, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})), 'd ', 
+			TIMESTAMPDIFF(HOUR, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})) - (TIMESTAMPDIFF(DAY, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})) * 24), 'h ',
+			TIMESTAMPDIFF(MINUTE, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})) - (TIMESTAMPDIFF(HOUR, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})) * 60), 'm '
+		) AS duration
+			
+		FROM
+			`alert` l
+			LEFT JOIN error e ON e.id = l.id_error
+			LEFT JOIN error_level el ON el.id = e.id_error_level
+			LEFT JOIN device d ON d.id = l.id_device
+			
+			LEFT JOIN site s ON s.id = d.id_site
+			LEFT JOIN time_zone t ON t.id = s.id_time_zone
+			WHERE e.`status` = 1 AND e.is_delete = 0
+			<if test="date_from != null and date_to != null">
+				AND CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone} ) BETWEEN #{date_from}  AND #{date_to}
+			</if>
+			<if test="id_sites != null and !id_sites.isEmpty()">
+				AND s.id IN  (
+					<foreach item="item" index="index" collection="id_sites" separator=" , ">
+						#{item.id}
+					</foreach>
+				)
+			</if>
+			
+			<if test="id_levels != null and !id_levels.isEmpty()">
+				AND el.id IN  (
+					<foreach item="item" index="index" collection="id_levels" separator=" , ">
+						#{item.id}
+					</foreach>
+				)
+			</if>
+			
+			<if test="site_name != null">
+				AND s.`name` LIKE CONCAT("%",#{site_name}, "%")
+			</if>
+			
+			
+			GROUP BY l.id 
+			
+			<choose>
+			    <when test="sortOrder != null and sortColumn != null">
+			      ORDER BY ${sortColumn} ${sortOrder}
+			    </when>
+			    
+			    <otherwise>
+			      ORDER BY id DESC
+			    </otherwise>
+			  </choose>
+  
+			LIMIT #{limit} OFFSET #{offset};
+	</select>
+	
+	
+	<select id="getTotal" resultMap="AlertMap" parameterType="String">
+		SELECT
+			COUNT(l.id) as totalRecord
+			
+		FROM
+			`alert` l
+			LEFT JOIN error e ON e.id = l.id_error
+			LEFT JOIN error_level el ON el.id = e.id_error_level
+			LEFT JOIN device d ON d.id = l.id_device
+			LEFT JOIN site s ON s.id = d.id_site
+			LEFT JOIN time_zone t ON t.id = s.id_time_zone
+			WHERE  e.`status` = 1 AND e.is_delete = 0
+			<if test="date_from != null and date_to != null">
+				AND CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone} ) BETWEEN #{date_from}  AND #{date_to}
+			</if>
+
+			<if test="id_sites != null and !id_sites.isEmpty()">
+				AND s.id IN  (
+					<foreach item="item" index="index" collection="id_sites" separator=" , ">
+						#{item.id}
+					</foreach>
+				)
+			</if>
+			
+			<if test="id_levels != null and !id_levels.isEmpty()">
+				AND el.id IN  (
+					<foreach item="item" index="index" collection="id_levels" separator=" , ">
+						#{item.id}
+					</foreach>
+				)
+			</if>
+			
+			<if test="site_name != null">
+				AND s.`name` LIKE CONCAT("%",#{site_name}, "%")
+			</if>
+  	</select>
+  	
+  	
+  	
+  	<select id="getDetailAlert" resultType="Map">
+		SELECT
+			l.id,
+			DATE_FORMAT( CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone} ), #{format_sql_long} ) AS start_date,
+			DATE_FORMAT( CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone} ), #{format_sql_long} ) AS end_date,
+			l.asset,
+			l.capacity,
+			l.`status`,
+			IF(l.`status` = 1, 'Open', 'Close') AS status_name,
+			al.`name` AS `level`,
+			e.message,
+			e.error_code,
+			d.devicename,
+			s.`name` AS site_name,
+			s.id AS id_site,
+			d.id as id_device,
+			'kW' AS capacity_unit,
+			DATE_FORMAT( CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone} ), #{format_sql_long} ) AS start,
+			CONCAT_WS('', 
+			TIMESTAMPDIFF(DAY, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})), 'd ', 
+			TIMESTAMPDIFF(HOUR, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})) - (TIMESTAMPDIFF(DAY, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})) * 24), 'h ',
+			TIMESTAMPDIFF(MINUTE, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})) - (TIMESTAMPDIFF(HOUR, CONVERT_TZ( l.start_date, t.`offset`, #{offset_timezone}), IFNULL(CONVERT_TZ( l.end_date, t.`offset`, #{offset_timezone}),#{current_time})) * 60), 'm '
+		) AS duration
+			
+		FROM
+			`alert` l
+			LEFT JOIN alert_level al ON al.id = l.id_level
+			LEFT JOIN error e ON e.id = l.id_error
+			LEFT JOIN device d ON d.id = l.id_device
+			
+			LEFT JOIN site s ON s.id = d.id_site
+			LEFT JOIN time_zone t ON t.id = s.id_time_zone
+			WHERE s.id_customer = #{id_customer} 
+				AND s.id = #{id_site} AND l.id = #{id}
+
+			LIMIT 1;
+  	</select>
+  	
+  	
+  	<insert id="insertAlert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `alert`(
+			`id_device`,
+			`id_error`,
+			`start_date`,
+			`end_date`,
+			`asset`,
+			`capacity`
+		)VALUES(
+			#{id_device},
+			#{id_error},
+			#{start_date},
+			#{end_date},
+			#{asset},
+			#{capacity}
+		);
+		<selectKey keyProperty="id" resultType="int">
+	        SELECT 
+	        LAST_INSERT_ID() as id
+        </selectKey>
+	</insert>
+	
+	
+	<select id="checkAlertlExist" parameterType="com.phoenixrs.api.entities.AlertEntity" resultType="int">
+    	SELECT
+    	COUNT(id) as totalRecord
+		FROM `alert` as u
+		WHERE u.id_device = #{id_device} AND u.id_error = #{id_error} AND u.`status` = 1 AND u.is_delete = 0;
+  	</select>
+  	
+  	
+  	<select id="getListIdSites" resultType="Map" >
+  		SELECT
+			s.id,
+			s.`name`,
+			s.`name` AS text,
+			0 AS active 
+		FROM
+			site s
+		WHERE s.is_delete = 0 AND s.`status` = 1
+			<if test="id_sites != null and !id_sites.isEmpty()">
+				AND s.id IN  (
+					<foreach item="item" index="index" collection="id_sites" separator=" , ">
+						#{item.id}
+					</foreach>
+				)
+			</if>
+		ORDER BY s.`name` ASC
+	</select>
+	
+</mapper>

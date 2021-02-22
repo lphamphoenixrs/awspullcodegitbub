@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ModelIMTSolarClass8000">
+	<resultMap id="ModelIMTSolarClass8000Map"
+		type="com.phoenixrs.api.entities.ModelIMTSolarClass8000Entity">
+		   <result property="time" column="time" />
+		   <result property="id_device" column="id_device" />
+		   <result property="error" column="error" />
+		   <result property="low_alarm" column="low_alarm" />
+		   <result property="high_alarm" column="high_alarm" />
+		   <result property="irradiance" column="irradiance" />
+		   <result property="tcell" column="tcell" />
+	</resultMap>
+
+	<insert id="insertModelIMTSolarClass8000" useGeneratedKeys="true"
+		keyProperty="time">
+		INSERT INTO `model_imtsolar_class8000`(
+		  `time`,
+		  `id_device`,
+		  `error`,
+		  `low_alarm`,
+		  `high_alarm`,
+		  `irradiance`,
+		  `tcell`
+		)VALUES(
+		  #{time},
+		  #{id_device},
+		  #{error},
+		  #{low_alarm},
+		  #{high_alarm},
+		  #{irradiance},
+		  #{tcell}
+		);
+	</insert>
+
+</mapper> 

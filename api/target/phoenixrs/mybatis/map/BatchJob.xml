@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BatchJob">
+	<resultMap id="BatchJobMap"
+		type="com.phoenixrs.api.entities.DeviceEntity">
+		<result property="id" column="id" />
+		<result property="id_site" column="id_site" />
+		<result property="id_vendor" column="id_vendor" />
+		<result property="serial_number" column="serial_number" />
+		<result property="modbusdevicenumber" column="modbusdevicenumber" />
+		<result property="devicename" column="devicename" />
+		<result property="devicetype" column="devicetype" />
+		<result property="deviceclass" column="deviceclass" />
+		<result property="configuration" column="configuration" />
+		<result property="configurationchangetime" column="configurationchangetime" />
+		<result property="configurationchecksum" column="configurationchecksum" />
+		<result property="datatablename" column="datatablename" />
+		<result property="id_customer" column="id_customer" />
+		<result property="id_device_type" column="id_device_type" />
+		<result property="active" column="active" />
+		<result property="id_device_group" column="id_device_group" />
+		<result property="keyword" column="keyword" />
+		
+		
+	</resultMap>
+
+	<select id="getListDevice" resultType="com.phoenixrs.api.entities.DeviceEntity" >
+		SELECT
+			d.id,
+			d.id_site,
+			d.id_vendor,
+			d.serial_number,
+			d.modbusdevicenumber,
+			d.devicename,
+			d.devicetype,
+			d.deviceclass,
+			d.configuration,
+			d.configurationchecksum,
+			d.configurationchangetime,
+			d.datatablename,
+			d.code_prefix
+		FROM
+			device AS d
+			LEFT JOIN site s ON s.id = d.id_site 
+		WHERE
+			d.`status` = 1 
+			AND d.is_delete = 0 
+			AND s.`status` = 1 
+			AND s.is_delete = 0
+	</select>
+	
+	<select id="getLastRowItem" resultType="com.phoenixrs.api.entities.BatchJobTableEntity" parameterType="String">
+    	SELECT
+    		`time`, 
+    		id_device, 
+    		error
+		FROM ${value} u
+		ORDER BY `time` DESC LIMIT 1;
+  	</select>
+  	
+  	<select id="checkAlertlExist" parameterType="com.phoenixrs.api.entities.AlertEntity" resultType="int">
+    	SELECT
+    	COUNT(id) as totalRecord
+		FROM `alert` as u
+		WHERE u.id_device = #{id_device} AND u.id_error = #{id_error} AND u.`status` = 1 AND u.is_delete = 0;
+  	</select>
+  	
+  	<insert id="insertAlert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `alert`(
+			`id_device`,
+			`id_error`,
+			`start_date`,
+			`end_date`,
+			`asset`,
+			`capacity`
+		)VALUES(
+			#{id_device},
+			#{id_error},
+			#{start_date},
+			#{end_date},
+			#{asset},
+			#{capacity}
+		);
+		<selectKey keyProperty="id" resultType="int">
+	        SELECT 
+	        LAST_INSERT_ID() as id
+        </selectKey>
+	</insert>
+	
+	
+</mapper>
