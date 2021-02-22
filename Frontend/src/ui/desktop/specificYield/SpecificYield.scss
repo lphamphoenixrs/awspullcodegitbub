@@ -1,0 +1,20 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+
+.specific{
+    .filter{
+        margin-top: 15px;
+    }
+    .title{
+        margin-top: 15px;
+        font-size: 16px;
+        padding-bottom: 3px;
+        font-weight: bold;
+        border-bottom: 2px solid #DDD;
+    }
+
+    .chart{
+        border: 1px solid #DDD;
+        margin: 15px 0;
+    }
+}

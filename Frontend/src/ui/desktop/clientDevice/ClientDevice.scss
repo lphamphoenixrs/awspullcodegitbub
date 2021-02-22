@@ -1,0 +1,58 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+
+.client-device{
+    h1{
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 15px;
+        color: $default;
+    }
+    .title{
+        margin-top: 15px;
+        font-size: 16px;
+        padding-bottom: 3px;
+        font-weight: bold;
+        border-bottom: 2px solid #DDD;
+    }
+    .element-type{
+        @include border-radius(3px);
+        border: 1px solid $default;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        h2{
+            background-color: $default;
+            padding: 5px;
+            font-size: 16px;
+            color: #fff;
+            .radio-cm-square{
+                margin-bottom: 0;
+            }
+        }
+        .element-content{
+            padding: 10px;
+            max-height: 600px;
+            overflow-x: auto;
+
+        }
+    }
+    .filter-group{
+        padding: 5px;
+        background-color: #e8f0fe;
+        a{
+            display: inline-block;
+            padding: 5px 10px;
+            @include border-radius(3px);
+            background-color: #DDD;
+            &:hover{
+                color: #FFF;
+                background-color: $default;
+            }
+        }
+    }
+
+    .chart{
+        border: 1px solid #DDD;
+        margin-top: 15px;
+    }
+}

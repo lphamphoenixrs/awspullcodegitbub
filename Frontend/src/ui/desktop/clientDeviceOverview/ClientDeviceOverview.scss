@@ -1,0 +1,72 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+.client-device-overview{
+    .filter{
+        margin-top: 15px;
+        a{
+            
+            @include border-radius(3px);
+            display: inline-block;
+            height: 28px;
+            line-height: 28px;
+            padding: 0 15px;
+            color: #FFF;
+            margin: 25px 5px 0 5px;
+            &.search{
+                background: $default;
+            }
+            &.reset{
+                background-color: #f3f5f7;
+                color: #222222;
+                border: 1px solid #ced4da;
+            }
+            &:hover,
+            &.active{
+                color: #FFF;
+                background: #5bb75b;
+            }
+        }
+
+        ul{
+            li{
+                display: inline-block;
+                margin-right: 15px;
+                &:last-child{
+                    margin-right: 0;
+                }
+                
+            }
+        }
+    }
+    .lists {
+        .body {
+            .body-row {
+                .body-col{
+                    img{
+                        max-width: 25px;
+                        max-height: 25px;
+                    }
+                    .round{
+                        @include border-radius(50%);
+                        width: 12px;
+                        height: 12px;
+                        border: 2px solid #5d5a5a;
+                        display: inline-block;
+                        &.on{
+                            background-color: #b3ff00;
+                        }
+                        &.off{
+                            background-color: #ab0000;
+                        }
+                    }
+                    var{
+                        &.icon{
+                            font-size: 16px;
+                            color: #5d5a5a;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

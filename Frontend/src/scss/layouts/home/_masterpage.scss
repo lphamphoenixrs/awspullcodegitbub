@@ -1,0 +1,483 @@
+
+.validate-message{
+  color: $error;
+}
+.input-error{
+  border-color: $error;
+}
+.required{
+  color: $error;
+}
+.form-control{
+  height: 28px;
+}
+.client_content{
+  position: relative;
+  margin-bottom: 30px;
+  margin-top: 55px;
+  position: absolute;
+  width: calc(100% - 260px);
+  height: calc(100% - 85px);
+  right: 0;
+  overflow-x: auto;
+
+  .app-content{
+    height: 100%;
+  }
+}
+.paging {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+
+  ul {
+    li {
+      display: inline-block;
+
+      input {
+        width: 40px;
+        height: 25px;
+        background: #FFF;
+        border: 1px solid #DDD;
+        @include border-radius(3px);
+        padding: 0 3px;
+      }
+
+
+      a {
+        display: inline-block;
+        @include border-radius(3px);
+        border: 1px solid #f3f5f7;
+        padding: 0 9px;
+        margin: 0 5px;
+        background: #fff;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 5px;
+
+        &:hover {
+          background: #f1f3f7;
+        }
+      }
+
+      &.active {
+        a {
+          background: $default;
+          color: #fff;
+        }
+      }
+
+      &.disabled {
+        a {
+          color: #fbfdff;
+          background: #d4d9e0;
+          border-color: #d4d9e0;
+          cursor: auto;
+        }
+      }
+    }
+  }
+}
+
+.data-empty {
+  text-align: center;
+  padding: 50px 0;
+  color: #9a9898;
+  @include border-radius(3px);
+  margin: 15px 0;
+  width: 100%;
+}
+
+
+.radio-cm-round {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-bottom: 12px;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked {
+      ~.checkmark {
+        background-color: #ffffff;
+
+        &::after {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 1px solid $default;
+    @include border-radius(50%);
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 6px;
+      top: 3px;
+      width: 6px;
+      height: 10px;
+      border: solid $default;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+  }
+
+  &:hover {
+    input {
+      ~.checkmark {
+        background-color: #ffffff;
+      }
+    }
+
+  }
+}
+
+
+.radio-cm-square,
+.checkbox-cm {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-bottom: 12px;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked {
+      ~.checkmark {
+        background-color: #ffffff;
+
+        &::after {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 1px solid #848484;
+    @include border-radius(3px);
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 6px;
+      top: 3px;
+      width: 6px;
+      height: 11px;
+      border: solid $default;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+  }
+
+  &:hover {
+    input {
+      ~.checkmark {
+        background-color: #ffffff;
+      }
+    }
+
+  }
+}
+
+
+.fldatepicker {
+
+  .react-datepicker__input-container,
+  .react-datepicker-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .react-datepicker-popper{
+    min-width: 280px !important;
+  }
+  .react-datepicker-popper[data-placement^=bottom]{
+    margin-top: 15px;
+  }
+  .react-datepicker-popper[data-placement^=top] {
+    margin-bottom: 15px;
+  }
+  &.onlytime{
+    .react-datepicker-popper[data-placement^=bottom]{
+      margin-top: 0;
+    }
+    .react-datepicker-popper[data-placement^=top] {
+      margin-bottom: 0;
+    }
+  }
+  .react-datepicker--time-only {
+    .react-datepicker__time-container{
+      border: 1px solid #aeaeae;
+      overflow: hidden;
+    }
+  }
+  input {
+    border: none;
+    width: 100%;
+    height: 100%;
+    @include border-radius(3px);
+  }
+  .form-control{
+    height: 30px;
+    padding: 0 .75rem;
+    line-height: 28px;
+  }
+
+  .input-group-append {
+    button {
+      border-color: #ced4da;
+      font-size: 14px;
+      height: 30px;
+      span{
+        position: relative;
+        top: 1px;
+      }
+
+      &:hover {
+        background: #f3f5f7;
+        color: #848484;
+      }
+
+      &:focus {
+        outline: none;
+        @include box-shadow(none);
+      }
+    }
+  }
+
+  .react-datepicker__day {
+    &:focus {
+      outline: none;
+      @include box-shadow(none);
+    }
+  }
+}
+
+.breadcrumb{
+  padding: 0;
+  @include border-radius(0px);
+  margin: 10px 0 0 0;
+  background: transparent;
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 3px;
+  
+}
+
+
+.lists{
+  border-radius: 3px;
+  background: #fff;
+  border: 1px solid #e2e3e4;
+  margin-top: 15px;
+
+  .header-row{
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #e2e3e4;
+      background: #ecf0f5;
+      .header-col{
+          flex-grow: 1;
+          padding: 0 20px 0 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          height: 40px;
+          line-height: 40px;
+          font-weight: 700;
+          border-right: 1px solid #e2e3e4;
+          cursor: pointer;
+          position: relative;
+          &.sorting{
+              &::after{
+                  content: "\49";
+                  position: absolute;
+                  display: inline-block;
+                  font-family: 'phoenixrs';
+                  font-size: inherit;
+                  text-rendering: auto;
+                  -webkit-font-smoothing: antialiased;
+                  -moz-osx-font-smoothing: grayscale;
+                  right: 5px;
+                  opacity: .5;
+              }
+              &.desc{
+                  &::after{
+                      content: "\4a";
+                  }
+              }
+              &.asc{
+                  &::after{
+                      content: "\48";
+                  }
+              }
+          }
+      }
+  }
+  .body{
+      .body-row{
+          display: flex;
+          flex-wrap: wrap;
+          border-bottom: 1px solid #e2e3e4;
+          &:last-of-type{
+              border-bottom: none;
+          }
+          &:hover{
+              background: #f1f3f7;
+          }
+          &:nth-child(even){
+              background-color: #f4f8ff;
+          }
+          .body-col{
+              flex-grow: 1;
+              padding: 5px;
+              border-right: 1px solid #e2e3e4;
+              &:last-of-type{
+                  border-right: none;
+              }
+              p{
+                  &.device_name,
+                  &.site_name{
+                      img{
+                          max-width: 20px;
+                          margin-right: 5px;
+                      }
+                  }
+                  .open{
+                    background-color: #e05516;
+                    display: inline-block;
+                    @include border-radius(20px);
+                    padding: 0 8px;
+                    color: #FFF;
+                    line-height: 1.5;
+                  }
+              }
+              .message_group{
+                  @include border-radius(6px);
+                  background-color: rgb(70, 70, 70);
+                  display: grid;
+                  grid-template-columns: auto auto;
+                  padding-top: 0.125rem;
+                  margin-top: 0.25rem;
+                  min-width: 26.5rem;
+                  position: relative;
+                  .type{
+                      display: inline-block;
+                      white-space: nowrap;
+                      cursor: pointer;
+                      margin-left: 0.5rem;
+                      padding-right: 1rem;
+                      color: rgb(255, 255, 255);
+                  }
+                  .message{
+                      cursor: pointer;
+                      margin-left: 0.5rem;
+                      padding-right: 1rem;
+                      color: rgb(243, 243, 21);
+                      overflow: hidden;
+                      text-align: right;
+                      text-overflow: ellipsis;
+                      white-space: nowrap;
+                  }
+                  .group_hover{
+                      position: absolute;
+                      width: 320px;
+                      background-color: $default;
+                      left: 50%;
+                      margin-left: -160px;
+                      bottom: 30px;
+                      padding: 15px;
+                      @include border-radius(6px);
+                      display: none;
+                      z-index: 9;
+                      &::before{
+                          content: "";
+                          position: absolute;
+                          border-top: 10px solid $default;
+                          border-right: 10px solid transparent;
+                          border-left: 10px solid transparent;
+                          bottom: -10px;
+                          left: 50%;
+                          margin-left: -5px;
+                      }
+                      h2{
+                          font-size: 16px;
+                          color: #FFF;
+                          img{
+                              width: 30px;
+                          }
+                      }
+                      p{
+                          &.type_hover{
+                              color: #FFF;
+                          }
+                          &.msg{
+                              color: rgb(243, 243, 21);
+                          }
+                      }
+                  }
+                  &:hover{
+                      .group_hover{
+                          display: block;
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
+
+.btn-save {
+  border: 1px solid $btn;
+  padding: 5px 10px;
+  background: $btn;
+  @include border-radius(3px);
+  color: #fff !important;
+  &:hover{
+    background-color: $bghover;
+    border-color: $bghover; 
+  }
+}

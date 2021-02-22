@@ -1,0 +1,341 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+
+.client_view{
+    .title{
+        color: $default;
+        font-weight: bold;
+        margin-bottom: 2px;
+        font-size: 15px;
+        border-bottom: 1px solid $default;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+
+    .equivalences_content{
+        .filter{
+            ul{
+                li{
+                    display: inline-block;
+                    padding: 0 5px;
+                    a{
+                        background: #f3f5f7;
+                        @include border-radius(3px);
+                        display: inline-block;
+                        padding: 3px 5px;
+                        &:hover,
+                        &.active{
+                            color: #FFF;
+                            background: #5bb75b;
+                        }
+                    }
+                }
+            }
+        }
+        .content{
+            ul{
+                li{
+                    margin-top: 15px;
+                    span{
+                        &.icon{
+                            font-size: 30px;
+                            padding-right: 15px;
+                        }
+                        &.label{
+                            color: #777777;
+                        }
+                    }
+                    strong{
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+        
+    }
+
+    .plant_parameters{
+        .card{
+            border: none;
+            .card-header{
+                padding: 0;
+                border: none;
+                @include border-radius(0);
+                background-color: transparent;
+                h2{
+                    a{
+                        display: inline-block;
+                        width: 100%;
+                        text-align: left;
+                        font-size: 14px;
+                        padding: 5px 0;
+                        var{
+                            display: inline-block;
+                            margin-right: 5px;
+                            @include transform-rotate(90deg);
+                        }
+                        &.collapsed{
+                            var{
+                                @include transform-rotate(0deg);
+                            }
+                        }
+                    }
+                }
+            }
+            .card-body{
+                padding: 0 0 1.25rem 1.25rem;
+                .content{
+                    border: 1px solid #DDD;
+                    ul{
+                        li{
+                            .item{
+                                border-bottom: 1px solid #DDD;
+                                padding: 10px;
+                            }
+                            &:last-child{
+                                .item{
+                                    border-bottom: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+    }
+
+    
+    .active-alarm{ 
+        .plant_parameters {
+            .card{
+                @include border-radius(0);
+                .card-header{
+                    background-color: #F2DEDE;
+                    padding: 5px 10px;
+                    border-bottom: 2px solid #FFF;
+                }
+                .card-body {
+                    padding: 1.25rem 0;
+                    .content{
+                        border: none;;
+                    }
+                }
+            }
+        } 
+        
+    }
+
+
+    // .howitworks{
+    //     background: url('/assets/images/howitworks.png') no-repeat;
+    //     p{
+    //         width: 192px;
+    //         color: #fff;
+    //         padding: 15px;
+    //         text-align: left;
+    //         background: #343434;
+    //         @include border-radius(6px);
+    //     }
+    // }
+    // .about{
+    //     h2{
+    //         font-size: 16px;
+    //         color: $default;
+    //     }
+    // }
+    // .pv_content{
+    //     min-height: 80px;
+        
+    // }
+
+    // .environmental_content{
+    //     .item{
+    //         border: 1px solid #DDD;
+    //         @include border-radius(3px);
+    //         padding: 5px;
+    //         background-color: #FFF9BE;
+    //         background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZjliZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    //         background-size: 100%;
+    //         background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fff9be),color-stop(100%, #ffffff));
+    //         background-image: -moz-linear-gradient(top, #fff9be 0%,#ffffff 100%);
+    //         background-image: -webkit-linear-gradient(top, #fff9be 0%,#ffffff 100%);
+    //         background-image: linear-gradient(to bottom, #fff9be 0%,#ffffff 100%);
+    //         filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#FFF9BE', endColorstr='#ffffff');
+            
+    //         .benefit_title{
+    //             text-transform: uppercase;
+    //             img{
+    //                 max-height: 23px;
+    //                 margin-right: 5px;
+    //             }
+    //         }
+    //         .benefit_content{
+    //             border-top: 1px solid #DDD;
+    //             margin-top: 5px;
+    //             text-align: center;
+    //             font-size: 18px;
+    //             padding: 5px 0;
+    //             span{
+    //                 font-size: 14px;
+    //             }
+    //         }
+    //     }
+    // }
+    .your_system_content{
+        position: relative;
+        .content{
+            height: 365px;
+            overflow: hidden;
+            .map{
+                width: 100%;
+                height: 100%;
+                #map{
+                    width: 100%;
+                    height: 100%;
+                }
+                .map_info{
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 8;
+                    background: rgba(0,0,0, 0.5);
+                    min-height: 20px;
+                    width: 100%;
+                    padding: 10px;
+                    p{
+                        color: #FFF;
+                        &.date{
+                            margin-top: 15px;
+                        }
+                        &.value{
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            
+            img{
+                width: 100%;
+            }
+            .system_info{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 8;
+                background: rgba(0,0,0, 0.5);
+                min-height: 20px;
+                width: 100%;
+                padding: 10px;
+                img{
+                    max-width: 80px;
+                }
+                p{
+                    text-align: center;
+                    color: #FFF;
+                    &.value{
+                        font-size: 18px;
+                    }
+                    &.sub_value{
+                        margin-top: 5px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .filter{
+            margin-bottom: 10px;
+            ul{
+                text-align: right;
+                li{
+                    display: inline-block;
+                    a{
+                        display: inline-block;
+                        background: #f3f5f7;
+                        @include border-radius(3px);
+                        padding: 3px 7px;
+                        margin-left: 10px;
+                        &:hover,
+                        &.active{
+                            background-color: #5bb75b;
+                            color: #FFF;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    .historical_chart{
+        ul{
+            li{
+                display: inline-block;
+                a{
+                    @include border-radius(3px);
+                    padding: 3px 10px;
+                    display: inline-block;
+                    background-color: #f3f5f7;
+                    margin-left: 5px;
+                    &:hover,
+                    &.active{
+                        background-color: #5bb75b;
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+    // .current_generation{
+    //     .meter_wrapper{
+    //         margin: 0 10px;
+    //         height: 165px;
+    //         .meter{
+    //             margin: 0 auto;
+    //             position: relative;
+                
+    //             width: 146px;
+    //             height: 146px;
+    //             &.lifetime_generation{
+    //                 background: url('/assets/images/generated_dial.png') no-repeat;
+    //             }
+    //             .digital_reading{
+    //                 position: relative;
+    //                 color: #fff;
+    //                 top: 77px;
+    //                 font-size: 12px;
+    //                 z-index: 1;
+    //                 text-align: center;
+    //             }
+
+    //         }
+    //         .meter_label{
+    //             width: 177px;
+    //             background: url('/assets/images/dial_value_bg.gif') no-repeat;
+    //             top: -40px;
+    //             height: 54px;
+    //             margin: auto;
+    //             position: relative;
+    //             text-align: center;
+    //             .meter_type{
+    //                 display: block;
+    //                 font-size: 11px;
+    //                 border-bottom: 1px solid #ccc;
+    //                 margin: 4px 0;
+    //                 padding-top: 2px;
+    //                 padding: 3px 0;
+    //             }
+    //             .reading{
+    //                 color: $default;
+    //                 .value{
+    //                     font-size: 17px;
+    //                 }
+    //                 .units{
+    //                     font-size: 12px;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+}

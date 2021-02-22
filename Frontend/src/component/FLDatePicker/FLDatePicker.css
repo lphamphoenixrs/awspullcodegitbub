@@ -1,0 +1,4 @@
+.fldatepicker input[type="text"]:read-only,
+.fldatepicker .form-control:not(:disabled):read-only{
+    background-color: inherit!important;
+}

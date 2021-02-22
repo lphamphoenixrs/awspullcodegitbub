@@ -1,0 +1,100 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+.quick_query{
+    .filter{
+        margin-top: 15px;
+        .show-selector{
+            display: inline-block;
+            width: 100%;
+            border: 1px solid #DDD;
+            text-align: center;
+            padding: 5px;
+            @include border-radius(3px);
+            &:hover{
+                background-color: #5bb75b;
+                color: #FFF;
+            }
+        }
+        ul{
+            li{
+                display: inline-block;
+                padding: 0 5px;
+                a{
+                    background: #f3f5f7;
+                    @include border-radius(3px);
+                    display: inline-block;
+                    padding: 3px 5px;
+                    &:hover,
+                    &.active{
+                        color: #FFF;
+                        background: #5bb75b;
+                    }
+                }
+            }
+        }
+    }
+
+    .box-search{
+        visibility: hidden;
+        position: absolute;
+        left: -200%;
+    }
+    .box-content{
+        width: 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.query-search{
+    margin-top: 15px;
+    .element-type{
+        @include border-radius(3px);
+        border: 1px solid $default;
+        margin-bottom: 15px;
+        h2{
+            background-color: $default;
+            padding: 5px;
+            font-size: 16px;
+            color: #fff;
+            .radio-cm-square{
+                margin-bottom: 0;
+            }
+        }
+        .element-content-type{
+            padding: 10px;
+        }
+        .element-content{
+            padding: 10px;
+            max-height: 245px;
+            overflow-x: auto;
+        }
+    }
+
+    .search-now{
+        a{
+            display: inline-block;
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+            background-color: #5bb75b;
+            @include border-radius(3px);
+            color: #FFF;
+            &:hover{
+                color: #FFF;
+            }
+            &.disable{
+                cursor: not-allowed;
+                opacity: .65;
+            }
+        }
+    }
+}
+.query-content{
+    height: 100%;
+    .chart{
+        padding-top: 15px;
+        height: 100%;
+    }
+}

@@ -1,0 +1,156 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+
+.main_header{
+    border-bottom: 2px solid #c3e7f6; 
+    width: 100%;
+    z-index: 1;
+    background: $default;
+    .logo{
+        img{
+            max-height: 55px;
+        }
+    }
+    .menu{
+        background-color: $default;
+        ul{
+            li{
+                display: inline-block;
+                a{
+                    display: inline-block;
+                    color: #ffffff;
+                    padding: 10px 20px;
+                    &:hover{
+                        color: #ffffff;
+                        background-color: #2d6abd;
+                    }
+                    &.active{
+                        background-color: #2d6abd;
+                    }
+                }
+            }
+        }
+    }
+}
+.header{
+    .user_info{
+        p{
+            text-align: right;
+        }
+    }
+    .menu_bar{
+        margin-top: 8px;
+        li{
+            position: relative;
+            display: inline-block;
+            height: 32px;
+            line-height: 32px;
+            span.avatar{
+                margin-left: 10px;
+                
+            }
+
+            a{
+                display: inline-block;
+                color: #ffffff;
+                &:hover{
+                    color: #0e70b7;
+                }
+                span{
+                    &.icon{
+                        position: relative;
+                        top: 10px;
+                    }
+                }
+            }
+            
+            &.user_menu{
+                span.avatar{
+                    margin-left: 10px;
+                    background-color: #ffffff;
+                    display: inline-block;
+                    @include border-radius(5px);
+                    margin-left: 5px;
+                    img{
+                        height: 40px;
+                        object-fit: contain;
+                        @include border-radius(5px);
+                    }
+                    
+                }
+                
+                ul{
+                    position: absolute;
+                    right: 0;
+                    border: 1px solid #E1F0FA;
+                    padding: 10px;
+                    min-width: 200px;
+                    background-color: #ffffff;
+                    @include box-shadow(rgba(0,0,0,.16) 1px 1px 4px 0px);
+                    z-index: 9;
+                    top: 40px;
+                    display: none;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        right: 3px;
+                        top: -10px;
+                        border-bottom: 10px solid #c3e7f6;
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                    }
+                    li{
+                        text-align: left;
+                        width: 100%;
+                        a{
+                            display: inline-block;
+                            width: 100%;
+                            padding: 5px;
+                            margin-left: 0;
+                            @include border-radius(3px);
+                            font-size: 14px;
+                            height: auto;
+                            color: #222222;
+                            &:hover{
+                                background-color: #E1F0FA;
+                            }
+                        }
+                    }
+                }
+                &.on{
+                    ul{
+                        display: block;
+                    }
+                }
+            }
+
+            &.user_info{
+                a{
+                    color: $default;
+                    &.profile{
+                        img{
+                            height: 2rem;
+                            width: 2rem;
+                            object-fit: contain;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .main_header{
+        .header{
+            .logo{
+                img{
+                    max-height: 46px;
+                }
+            }
+            .menu_bar{
+                margin-top: 5px;
+            }
+        }
+    }
+}

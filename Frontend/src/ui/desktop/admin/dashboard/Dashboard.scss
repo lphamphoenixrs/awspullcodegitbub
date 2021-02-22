@@ -1,0 +1,277 @@
+@import '../../../../scss/helpers/variables.scss';
+@import '../../../../scss/helpers/mixins.scss';
+
+.dashboard{
+    padding-top: 15px;
+    .cell_title{
+        border: 1px solid #dddddd;
+        ul{
+            li{
+                display: inline-block;
+                width: 50%;
+                text-align: center;
+                height: 40px;
+                line-height: 40px;
+                font-weight: bold;
+                border-right: 1px solid #DDD;
+                a{
+                    color: red;
+                }
+                &:last-of-type{
+                    border-right: none;
+                }
+                &.one{
+                    width: 100%;
+                }
+
+            }
+        }
+    }
+
+    .main_info{
+        border: 1px solid #dddddd;
+        padding: 5px;
+        margin-top: 15px;
+        .title{
+            a{
+                display: inline-block;
+                background-color: #3594CF;
+                @include border-radius(3px);
+                width: 100%;
+                color: #FFF;
+                text-align: center;
+                padding: 3px;
+                &.active{
+                    background-color: $default;
+                }
+            }
+        }
+        .performance_table{
+            thead{
+                background-color: #eee;
+            }
+            table{
+                margin-bottom: 0;
+                td,
+                th{
+                    padding: 5px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .main_chart{
+        height: calc(100% - 55px);
+        border: 1px solid #DDD;
+        margin-top: 15px;
+        #map{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .main{
+        // overflow-y: auto;
+        .content_dashboard{
+            width: 100%;
+            border: 1px solid #DDD;
+            
+            .dashboar_main_header{
+                background-color: #f0f0f0;
+                .item-row {
+                    display: flex;
+                    flex-wrap: wrap;
+                    border-bottom: 1px solid #dddddd;
+                    .item-col {
+                        flex-grow: 1;
+                        padding: 10px 3px;
+                        border-right: 1px solid #dddddd;
+                        &:last-of-type{
+                            border-right: none;
+                        }
+
+                        .middle{
+                            width: 100%;
+                            height: 100%;
+                            display: table;
+                            text-align: center;
+                            span{
+                                display: table-cell;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .body{
+                .item-row {
+                    display: flex;
+                    flex-wrap: wrap;
+                    border-bottom: 1px solid #dddddd;
+                    .item-col {
+                        flex-grow: 1;
+                        padding: 10px 3px;
+                        border-right: 1px solid #dddddd;
+                        p{
+                            &.name{
+                                a{
+                                    font-weight: bold;
+                                    &.mini_site{
+                                        background-color: $default;
+                                        display: inline-block;
+                                        color: #FFF;
+                                        @include border-radius(20px);
+                                        font-weight: normal;
+                                        padding: 0 10px;
+                                        margin-left: 10px;
+                                        font-size: 11px;
+                                    }
+                                }
+                            }
+                        }
+                        .middle  {
+                            display: table;
+                            height: 100%;
+                            text-align: center;
+                            width: 100%;
+                            span{
+                                display: table-cell;
+                                vertical-align: middle;
+                                .error_main{
+                                    position: relative;
+                                    display: inline-block;
+                                    cursor: pointer;
+                                    img{
+                                        margin-right: 5px;
+                                    }
+                                    var{
+                                        position: relative;
+                                        top: 2px;
+                                        font-style: normal;
+                                    }
+                                    .error_list{
+                                        position: absolute;
+                                        background: #FFF;
+                                        border:  1px solid $default;
+                                        width: 320px;
+                                        left: calc(100% + 10px);
+                                        @include border-radius(4px);
+                                        bottom: -20px; 
+                                        display: none;
+                                        .error-header{
+                                            background: $default;
+                                            padding: 5px 0;
+                                            text-align: center;
+                                            text-transform: uppercase;
+                                            a{
+                                                color: #FFF;
+                                                display: inline-block;
+                                                width: 100%;
+                                            }
+                                        }
+                                        &::after{
+                                            content: "";
+                                            position: absolute;
+                                            border-right: 10px solid $default;
+                                            border-top: 10px solid transparent;
+                                            border-bottom: 10px solid transparent;
+                                            left: -10px;
+                                            bottom: 15px;
+                                        }
+                                        ul{
+                                            max-height: 360px;
+                                            overflow-x: auto;
+                                            padding: 10px;
+                                            li{
+                                                display: inline-block;
+                                                width: 100%;
+                                                color: #222;
+                                                border-bottom: 1px solid #DDD;
+                                                .item{
+                                                    padding: 5px 0;
+                                                    p{
+                                                        text-align: left;
+                                                        line-height: 22px;
+                                                    }
+                                                }
+                                                &:last-child{
+                                                    border-bottom: none;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &:hover{
+                                        .error_list{
+                                            display: block;
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                        .progress_bar {
+                            border-width: 1px;
+                            border: 1px solid #DDD;
+                            width: 40px;
+                            height: 10px;
+                            display: inline-block;
+                            margin-bottom: 0px;
+                            margin-right: 3px;
+                            overflow: hidden;
+                            &.green{
+                                border-color: #00A200;
+                                div{
+                                    background: #00A200;
+                                    height: 100%;
+                                }
+                            }
+                            &.red{
+                                border-color: red;
+                                div{
+                                    background: red;
+                                    height: 100%;
+                                }
+                            }
+                            &.yellow{
+                                border-color: yellow;
+                                div{
+                                    background: yellow;
+                                    height: 100%;
+                                }
+                            }
+                            
+                        }
+
+                        &:last-of-type{
+                            border-right: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .filter{
+        margin-top: 15px;
+        padding: 10px 0;
+        .title{
+            font-weight: bold;
+        }
+        ul{
+            float: right;
+            li{
+                display: inline-block;
+                margin-right: 10px;
+                &.sort_type{
+                    padding-top: 4px;
+                }
+                
+                &:last-of-type{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

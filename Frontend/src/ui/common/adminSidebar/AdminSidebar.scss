@@ -1,0 +1,187 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+
+body{
+    .main_sidebar{
+        width: 220px;
+        height: calc(100%);
+        position: fixed;
+        left: 0;
+        background: #171E28;
+        top: 0;
+        z-index: 9;
+        transition-property: width;
+        transition-duration: 0.5s;
+        
+        .monitoring{
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            color: #FFF;
+            text-transform: uppercase;
+            background-color: #171E28;
+            img{
+                max-height: 55px;
+            }
+        }
+        .sidebar-body{
+            max-height: calc(100% - 230px);
+            // overflow-x: auto;
+            padding: 10px;
+
+            .menu-box{
+                margin-bottom: 15px;
+                h2{
+                    font-size: 18px;
+                    padding-top: 30px;
+                    color: rgba(255, 255, 255, 0.2);
+                    padding-bottom: 15px;
+                }
+                ul{
+                    margin-top: 10px;
+                    li{
+                        margin: 5px 0;
+                        a{
+                            display: inline-block;
+                            width: 100%;
+                            @include border-radius(3px);
+                            padding: 3px 5px;
+                            color: #7F8388;
+                            position: relative;
+                            span{
+                                &.icon{
+                                    font-size: 16px;
+                                    padding-right: 7px;
+                                    position: relative;
+                                    top: 3px;
+                                }
+                            }
+                            var{
+                                font-style: normal;
+                            }
+                            &.active,
+                            &:hover{
+                                background-color: #272D36;
+                                color: #FFF; 
+                            }
+                            &.index{
+                                &.active{
+                                    background-color: transparent;
+                                }
+                            }
+                            &.has-child{
+                                padding-left: 30px;
+                            }
+                        }
+                        ul{
+                            li{
+                                a{
+                                    padding-left: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .sidebar-footer{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            ul{
+                margin-bottom: 15px;
+                li{
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0 15px;
+                    a{
+                        color: #7F8388;
+                        position: relative;
+                        .count{
+                            @include border-radius(50%);
+                            background-color: red;
+                            color: #FFF;
+                            text-align: center;
+                            width: 20px;
+                            height: 20px;
+                            display: inline-block;
+                            line-height: 20px;
+                            font-size: 10px;
+                            position: relative;
+                            top: -10px;
+                        }
+                    }
+                }
+            }
+            .expend{
+                color: #7F8388;
+                font-size: 24px;
+                padding: 0 15px;
+                height: 40px;
+                line-height: 40px;
+                span{
+                    cursor: pointer;
+                }
+            }
+            .copyright{
+                background-color: #151B24;
+                color: #7F8388;
+                text-align: center;
+                line-height: 22px;
+                padding: 0 15px;
+            }
+        }
+        
+    }
+    &.off{
+        .main_sidebar{
+            width: 80px;
+            transition-property: width;
+            transition-duration: 0.5s;
+            .sidebar-body {
+                .menu-box {
+                    h2{
+                        text-align: center;
+                    }
+                    ul {
+                        li {
+                            a{
+                                &.has-child{
+                                    padding: 3px 5px;
+                                }
+                                .text{
+                                    display: none;
+                                }
+                                text-align: center;
+                                span{
+                                    font-size: 24px;
+                                }
+                                &:hover{
+                                    .text{
+                                        position: absolute;
+                                        background: #171e28;
+                                        z-index: 9;
+                                        left: 100%;
+                                        top: 0;
+                                        display: inline-block;
+                                        height: 100%;
+                                        line-height: 40px;
+                                        text-align: left;
+                                        padding: 0 30px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        .main_content{
+            width: calc(100% - 80px);
+            transition-property: width;
+            transition-duration: 0.5s;
+        }
+    }
+}
+

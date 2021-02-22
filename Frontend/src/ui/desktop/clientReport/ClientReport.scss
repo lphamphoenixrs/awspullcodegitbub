@@ -1,0 +1,51 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+
+.client-report{
+    .title{
+        margin-top: 15px;
+        font-size: 16px;
+        padding-bottom: 3px;
+        font-weight: bold;
+        border-bottom: 2px solid #DDD;
+    }
+
+    .filter{
+        margin: 15px 0;
+    }
+    .filter-group{
+        padding: 5px;
+        background-color: #e8f0fe;
+    }
+    .data-report{
+        .data-group{
+            border: 1px solid #DDD;
+        }
+        table{
+            margin-bottom: 0;
+            tr{
+                &.total{
+                    background: #f3f5f7;
+                }
+            }
+        }
+    }
+    .chart{
+        border: 1px solid #DDD;
+    }
+    .export-to-csv{
+        text-align: right;
+        margin-top: 15px;
+        a{
+            display: inline-block;
+            padding: 5px 10px;
+            @include border-radius(3px);
+            background-color: #DDD;
+            &:hover{
+                color: #FFF;
+                background-color: $default;
+            }
+        }
+    }
+
+}

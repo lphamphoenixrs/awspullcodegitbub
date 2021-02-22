@@ -1,0 +1,95 @@
+@import '../../../../scss/helpers/variables.scss';
+@import '../../../../scss/helpers/mixins.scss';
+
+.image-gallery{
+    border: 1px solid #DDD;
+    padding: 10px;
+    .review-image{
+        margin-bottom: 15px;
+    }
+    ul{
+        li{
+            .item{
+                width: 100%;
+                height: 80px;
+                text-align: center;
+                line-height: 80px;
+                overflow: hidden;
+                margin-bottom: 15px;
+                border: 1px solid #f3f5f7;
+                position: relative;
+                .delete{
+                    position: absolute;
+                    width: 25px;
+                    height: 25px;
+                    top: 5px;
+                    line-height: 25px;
+                    background: #DDD;
+                    @include border-radius(50%);
+                    left: 5px;
+                    cursor: pointer;
+                    span{
+                        position: relative;
+                        top: 2px;
+                    }
+                }
+                &.active{
+                    border-color: #5bb75b;
+                }
+                &.item-add{
+                    background-color: #f3f5f7;
+                    font-size: 24px;
+                    @include border-radius(3px);
+                    span{
+                        cursor: pointer;
+                    }
+                    label{
+                        margin-bottom: 0;
+                        width: 100%;
+                        cursor: pointer;
+                        #gallery{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.setting_content{
+    #view-map{
+        height: 212px;
+        border: 1px solid #DDD;
+    }
+}
+
+.btn-margin-top{
+    margin-top: 25px;
+}
+.modal-device{
+    .list-device{
+        overflow-y: auto;
+        .lists{
+            width: 2402px;
+        }
+    }
+    fieldset{
+        border: 1px solid #DDD;
+        padding: 15px 15px 0 15px;
+
+        legend{
+            width: auto;
+            font-size: 14px;
+            padding: 5px 0;
+            font-weight: bold;
+        }
+    }
+}
+.list-title{
+    margin-top: 15px;
+    .device-title{
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+

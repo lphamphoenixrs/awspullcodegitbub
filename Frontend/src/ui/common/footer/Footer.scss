@@ -1,0 +1,15 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+
+.footer{
+    background-color: $default;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+}

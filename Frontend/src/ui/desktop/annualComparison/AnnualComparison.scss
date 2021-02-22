@@ -1,0 +1,62 @@
+@import '../../../scss/helpers/variables.scss';
+@import '../../../scss/helpers/mixins.scss';
+.comparison{
+    .title{
+        margin-top: 15px;
+        font-size: 16px;
+        padding-bottom: 3px;
+        font-weight: bold;
+        border-bottom: 2px solid #DDD;
+        display: inline-block;
+        width: 100%;
+    
+        .export-csv{
+            float: right;
+            font-size: 14px;
+            font-weight: normal;
+            background: #f3f5f7;
+            border: 1px solid #DDD;
+            padding: 3px 10px;
+            @include border-radius(3px);
+            &:hover{
+                background-color: $default;
+                color: #FFF;
+            }
+        }
+    }
+    .chart_comparison{
+        border: 1px solid #DDD;
+        padding: 10px;
+        margin: 10px 0;
+    }
+    .data_comparison{
+        h4{
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .table{
+            thead{
+                tr{
+                    th{
+                        border-top: none;
+                        &:last-of-type{
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+            tr{
+                td{
+                    border-top: none;
+                    &.total{
+                        border-top: 3px double rgb(191, 191, 191);
+                    }
+                    &:last-of-type{
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+    
+}

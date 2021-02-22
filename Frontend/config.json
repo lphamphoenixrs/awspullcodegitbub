@@ -1,0 +1,8 @@
+{
+    "use_ssl": false,
+    "ssl_option": {
+        "listenPort": 8443,
+        "privateKey": "/etc/ssl/private/ssl.vn.key",
+        "certificate": "/etc/ssl/certs/ssl.vn.crt"
+      }
+}
